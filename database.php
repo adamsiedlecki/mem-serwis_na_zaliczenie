@@ -9,6 +9,8 @@
     // $result = $result->fetch_assoc();
     // echo implode($result);
 
+    //insertMeme("nazwa", 5);
+
     function getDbConnection(){
         $config = include_once("config.php");
 
@@ -61,6 +63,16 @@
         $query = "SELECT * FROM memes ";
         $result = $connection->query($query);
         $connection->close();
+        return $result;
+    }
+    function insertMeme($filename, $userid){
+        $date = getdate();
+        $connection = getDbConnection();
+        $stmt = $connection->prepare("INSERT INTO memes VALUES (?,?,?,NOW())");
+        $stmt->bind_param("isi", $id = 0, $file=$filename, $userid); // s is for string
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
         return $result;
     }
 ?>

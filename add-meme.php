@@ -71,7 +71,11 @@ if (!isset($_SESSION['logged_id'])) {
         </div>
         <div id="content">
                 <div class="meme">
-                    <img class="memeimg" src="meme/main-meme.jpg">
+                    <form action="upload.php" method="POST" ENCTYPE="multipart/form-data">
+                    <input type="file" name="plik"/><br/>
+                    <input type="submit" value="Wyślij plik"/>
+
+                    </form>
                 </div>
         </div>
     </div>

@@ -77,9 +77,9 @@ if (!isset($_SESSION['logged_id'])) {
                      if($_SESSION["role"]=="admin"){
                         $users = getAllUsers();
 
-                        echo "NAZWA & ROLA </br>";
+                        echo "ID & NAZWA & ROLA </br>";
                         while($row = $users->fetch_assoc()){
-                            echo $row['login']." ".$row['role']."</br>";
+                            echo $row['id']." ".$row['login']." ".$row['role']."</br>";
                         }
                      }else{
                          echo "ACCESS DENIED";

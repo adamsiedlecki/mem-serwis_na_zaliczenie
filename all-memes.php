@@ -69,10 +69,19 @@ if (!isset($_SESSION['logged_id'])) {
                 </ul>
             </div>
         </div>
-        <div id="content">
-                <div class="meme">
-                    <img class="memeimg" src="meme/main-meme.jpg">
-                </div>
+        <div class="allmemes">
+                <?php
+                    $result = getAllMemes();
+
+                    while($row = $result->fetch_assoc()){
+                        echo '<div class="meme">';
+
+                        echo '<img class="memeimg" src="meme/'.$row['filename'].'"> 
+                        <p>'.$row['user_id']." ".$row['date'].'</p>';
+
+                        echo '</div>';
+                    }
+                ?>
         </div>
     </div>
 
