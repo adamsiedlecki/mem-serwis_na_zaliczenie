@@ -1,0 +1,68 @@
+#container{
+    word-spacing: 10px;
+    font-family: 'Roboto Mono', monospace;
+    text-align:center;
+    width: 100%;
+    height:100%;
+}
+#header{
+    margin-top: 20px;
+    background-color: white;
+    //padding-top: 10px;
+    
+    
+}
+#logo-strap{
+    width: 100%;
+    background-color: white;
+}
+
+img.logo{
+    width:120px;
+    height: 120px;
+}
+#profile-list{
+    text-align: left;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#content{
+    
+    background-color: rgb(116, 203, 235);
+    margin-left: auto;
+    margin-right: auto;
+    width:60%;
+    height: 80%;
+    border-radius: 25px;
+    font-size: 20px;
+}
+#menu{
+  color: black;
+}
+#menu li{
+  
+  display: inline-block;
+}
+
+ /* unvisited link */
+ a:link {
+    word-spacing: 1px;
+    color: black;
+    text-decoration: none;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: black;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: rgb(221, 24, 17);
+  }
+  
+  /* selected link */
+  a:active {
+    color: white;
+  } 
