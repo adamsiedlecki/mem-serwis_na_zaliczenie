@@ -74,6 +74,12 @@ if (!isset($_SESSION['logged_id'])) {
             <p>Pozyskiwanie informacji z internetu jest jak picie z hydrantu przeciwpożarowego.
 
                 Mitchell Kapor </p>
+                    </br> </br> 
+                    <?php
+                    $count = getUserCount();
+                    echo "Aktualna ilość użytkowaników serwisu: ".$count;
+                    ?>
+                    </br> </br>
                 <div class="meme">
                     <img class="memeimg" src="meme/main-meme.jpg">
                 </div>

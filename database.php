@@ -46,8 +46,15 @@
         $connection->close();
         return $result;
     }
+    function getUserCount(){
+        $connection = getDbConnection();
+        $query = "SELECT COUNT(id) FROM users WHERE 1=1 ";
+        $result = $connection->query($query);
+        $connection->close();
+        $result = $result->fetch_assoc();
+        return $result['COUNT(id)'];
+    }
     function getUserByName($username){
-        //echo $username;
         $connection = getDbConnection();
         $stmt = $connection->prepare("SELECT * FROM users WHERE login=?");
         $stmt->bind_param("s", $username); // s is for string
@@ -57,16 +64,24 @@
         return $result;
     }
     function getLoginById($id){
-        //echo $username;
         $connection = getDbConnection();
         $stmt = $connection->prepare("SELECT * FROM users WHERE id=?");
-        $stmt->bind_param("i", $id); // s is for string
+        $stmt->bind_param("i", $id); // i is for integer
         $stmt->execute();
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
         
         $stmt->close();
         return $user['login'];
+    }
+
+    function deleteUserById($id){
+        $connection = getDbConnection();
+        $stmt = $connection->prepare("DELETE FROM users WHERE id=?");
+        $stmt->bind_param("i", $id); // i is for integer
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
     }
     function insertNewUser($username, $password){
         //echo $username;

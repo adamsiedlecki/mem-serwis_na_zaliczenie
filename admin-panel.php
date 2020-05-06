@@ -30,6 +30,12 @@ if (!isset($_SESSION['logged_id'])) {
 		exit();
 	}
 }
+
+if(isset($_POST['userIdToDelete'])){
+    $id = $_POST['userIdToDelete'];
+    deleteUserById($id);
+    unset($_POST['userIdToDelete']);
+}
 ?>
 
 <html>
@@ -81,10 +87,19 @@ if (!isset($_SESSION['logged_id'])) {
                         while($row = $users->fetch_assoc()){
                             echo $row['id']." ".$row['login']." ".$row['role']."</br>";
                         }
+
+
+                        echo '</br> </br>
+                        Usuń usera o podanym ID:
+                        <form method="POST" action="admin-panel.php">
+                            <input type="number" name="userIdToDelete"> </br>
+                            <input type="submit" value="USUŃ"> </br>
+                        </form>';
                      }else{
                          echo "ACCESS DENIED";
                      }
                     ?>
+                    
                 </div>
         </div>
     </div>
