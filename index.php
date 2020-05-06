@@ -71,6 +71,9 @@ if (!isset($_SESSION['logged_id'])) {
             </div>
         </div>
         <div id="content">
+            <p>Pozyskiwanie informacji z internetu jest jak picie z hydrantu przeciwpożarowego.
+
+                Mitchell Kapor </p>
                 <div class="meme">
                     <img class="memeimg" src="meme/main-meme.jpg">
                 </div>

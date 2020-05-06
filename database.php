@@ -56,6 +56,28 @@
         $stmt->close();
         return $result;
     }
+    function getLoginById($id){
+        //echo $username;
+        $connection = getDbConnection();
+        $stmt = $connection->prepare("SELECT * FROM users WHERE id=?");
+        $stmt->bind_param("i", $id); // s is for string
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        
+        $stmt->close();
+        return $user['login'];
+    }
+    function insertNewUser($username, $password){
+        //echo $username;
+        $connection = getDbConnection();
+        $stmt = $connection->prepare("INSERT INTO users VALUES(?,?,?,?)");
+        $stmt->bind_param("isss", $id = 0, $username, $password, $role = "user"); // s is for string
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result;
+    }
 
     //TABLE MEMES
     function getAllMemes(){

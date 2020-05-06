@@ -1,34 +1,31 @@
 <?php
 session_start();
+error_reporting(0);
 require_once 'database.php';
-if (!isset($_SESSION['logged_id'])) {
-
-	if (isset($_POST['login'])) {
-        
-        $result = getUserByName($_POST['login']);
-
-        // if($result->num_rows != 1){
-        //     header('Location: login.php');
-		//     exit();
-        // }
-        
-        $user = $result->fetch_assoc();
-        $password = $_POST['password'];
-        
-        //echo $user;
-		if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['logged_id'] = $user['id'];
-            $_SESSION['username'] =$user['login'];
-			unset($_SESSION['bad_attempt']);
-		} else {
-			$_SESSION['bad_attempt'] = true;
-			header('Location: login.php');
-			exit();
-		}
-	} else {
-		header('Location: login.php');
+if (isset($_SESSION['logged_id'])) {
+    header('Location: index.php');
 		exit();
-	}
+}
+
+if(isset($_POST['password1'])){
+    $_SESSION['not-equal-passwords'] = false;
+    $_SESSION['user-exists'] = false;
+    $login = $_POST['login'];
+    $password1 = $_POST['password1'];
+    $password2 = $_POST['password2'];
+    $user = getUserByName($login);
+    //echo $user->fetch_assoc();
+    if($row = $user->fetch_assoc()){
+        $_SESSION['user-exists'] = true;
+    }else{
+        //echo "nic nie przeszkadza;";
+        if($password1 == $password2){
+            insertNewUser($login, password_hash($password1, PASSWORD_DEFAULT));
+            $_SESSION['register-complete'] = true;
+        }else{
+            $_SESSION['not-equal-passwords'] = true;
+        }
+    }
 }
 ?>
 
@@ -66,9 +63,27 @@ if (!isset($_SESSION['logged_id'])) {
             </div>
         </div>
         <div id="content">
-                <div class="meme">
-                    <img class="memeimg" src="meme/main-meme.jpg">
-                </div>
+                    </br>
+                    <?php
+                    if(isset($_SESSION['user-exists']) && $_SESSION['user-exists']){
+                        echo "Użytkownik z taką nazwą już istnieje";
+                    }else if(isset($_SESSION['not-equal-passwords']) && $_SESSION['not-equal-passwords']){
+                        echo "Hasła nie są identyczne.";
+                    }else if(isset($_SESSION['register-complete']) && $_SESSION['register-complete']){
+                        echo "Zarejestrowano pomyślnie. Spróbuj się zalogować.";
+                    }
+
+                    ?>
+                    </br> </br>
+                <form method="POST" action="register.php">
+                    Login: </br>
+                    <input type="text" name="login"> </br>
+                    Hasło: </br>
+                    <input type="password" name="password1"> </br>
+                    Powtórz hasło: </br>
+                    <input type="password" name="password2"> </br>
+                    <input type="submit" value="ZAREJESTRUJ SIĘ"> </br>
+                </form>
         </div>
     </div>
 

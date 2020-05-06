@@ -75,9 +75,9 @@ if (!isset($_SESSION['logged_id'])) {
 
                     while($row = $result->fetch_assoc()){
                         echo '<div class="meme">';
-
+                        $username = getLoginById($row['user_id']);
                         echo '<img class="memeimg" src="meme/'.$row['filename'].'"> 
-                        <p>'.$row['user_id']." ".$row['date'].'</p>';
+                        <p>'.$username." ".$row['date'].'</p>';
 
                         echo '</div>';
                     }

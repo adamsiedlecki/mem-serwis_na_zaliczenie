@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'database.php';
+unset($_SESSION['register-complete']);
 if (!isset($_SESSION['logged_id'])) {
 
 }else {
