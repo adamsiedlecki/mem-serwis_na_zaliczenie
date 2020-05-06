@@ -18,8 +18,7 @@ if (!isset($_SESSION['logged_id'])) {
         //echo $user;
 		if ($user && password_verify($password, $user['password'])) {
             $_SESSION['logged_id'] = $user['id'];
-            $_SESSION['username'] = $user['login'];
-            $_SESSION['role'] = $user['role'];
+            $_SESSION['username'] =$user['login'];
 			unset($_SESSION['bad_attempt']);
 		} else {
 			$_SESSION['bad_attempt'] = true;
@@ -59,6 +58,7 @@ if (!isset($_SESSION['logged_id'])) {
                             echo '<li><a class="menu-item" href="login.php">LOGOWANIE</a></li>';
                         }
                     ?>
+                    
                     <li><a class="menu-item" href="add-meme.php">DODAJ MEMA</a></li>
                     <li><a class="menu-item" href="all-memes.php">WSZYSTKIE MEMY</a></li>
                     <?php
@@ -72,7 +72,19 @@ if (!isset($_SESSION['logged_id'])) {
         </div>
         <div id="content">
                 <div class="meme">
-                    <img class="memeimg" src="meme/main-meme.jpg">
+                    Lista użytkowników: </br>
+                    <?php
+                     if($_SESSION["role"]=="admin"){
+                        $users = getAllUsers();
+
+                        echo "NAZWA & ROLA </br>";
+                        while($row = $users->fetch_assoc()){
+                            echo $row['login']." ".$row['role']."</br>";
+                        }
+                     }else{
+                         echo "ACCESS DENIED";
+                     }
+                    ?>
                 </div>
         </div>
     </div>

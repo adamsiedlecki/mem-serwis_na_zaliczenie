@@ -3,33 +3,9 @@ session_start();
 require_once 'database.php';
 if (!isset($_SESSION['logged_id'])) {
 
-	if (isset($_POST['login'])) {
-        
-        $result = getUserByName($_POST['login']);
-
-        // if($result->num_rows != 1){
-        //     header('Location: login.php');
-		//     exit();
-        // }
-        
-        $user = $result->fetch_assoc();
-        $password = $_POST['password'];
-        
-        //echo $user;
-		if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['logged_id'] = $user['id'];
-            $_SESSION['username'] = $user['login'];
-            $_SESSION['role'] = $user['role'];
-			unset($_SESSION['bad_attempt']);
-		} else {
-			$_SESSION['bad_attempt'] = true;
-			header('Location: login.php');
-			exit();
-		}
-	} else {
-		header('Location: login.php');
-		exit();
-	}
+}else {
+    header('Location: index.php');
+    exit();
 }
 ?>
 
@@ -53,14 +29,11 @@ if (!isset($_SESSION['logged_id'])) {
                 <ul>
                     <li><a class="menu-item" href="index.php">STRONA GŁÓWNA</a></li>
                     <li><a class="menu-item" href="admin-panel.php">PANEL ADMINA</a></li>
-                    <?php
-                        if (!isset($_SESSION['logged_id'])) {
-                            echo '<li><a class="menu-item" href="register.php">REJESTRACJA</a></li>';
-                            echo '<li><a class="menu-item" href="login.php">LOGOWANIE</a></li>';
-                        }
-                    ?>
+                    <li><a class="menu-item" href="register.php">REJESTRACJA</a></li>
+                    <li><a class="menu-item" href="login.php">LOGOWANIE</a></li>
                     <li><a class="menu-item" href="add-meme.php">DODAJ MEMA</a></li>
                     <li><a class="menu-item" href="all-memes.php">WSZYSTKIE MEMY</a></li>
+                    
                     <?php
                         if (isset($_SESSION['logged_id'])) {
                             echo '<li><a class="menu-item" href="logout.php">WYLOGUJ:'.$_SESSION['username'].'</a></li>';
@@ -71,9 +44,26 @@ if (!isset($_SESSION['logged_id'])) {
             </div>
         </div>
         <div id="content">
-                <div class="meme">
-                    <img class="memeimg" src="meme/main-meme.jpg">
-                </div>
+            <div id="login-form">
+            </br>
+                <?php
+
+                    if (isset($_SESSION['bad_attempt'])) {
+                        echo "Logowanie nie powiodło się";
+                    }
+                
+                ?>
+
+                <form method="POST" action="index.php">
+                    Do potrzeb testowych: login to admin, hasło to password
+                    </br> </br>
+                    Login:
+                    <input type="text" name="login" value=""> </br>
+                    Hasło:
+                    <input type="password" name="password"> </br> </br> 
+                    <input type="submit" value="ZALOGUJ"> </br>
+                </form>
+            </div>
         </div>
     </div>
 

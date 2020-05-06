@@ -12,14 +12,10 @@
     
     
 }
-#logo-strap{
-    width: 100%;
-    background-color: white;
-}
 
 img.logo{
-    width:120px;
-    height: 120px;
+    width:10%;
+    height: 10%;
 }
 #profile-list{
     text-align: left;
@@ -66,3 +62,15 @@ img.logo{
   a:active {
     color: white;
   } 
+  .meme{
+    width:400px;
+    height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+  }
+.memeimg{
+  max-width: 100%;
+
+  max-height: 100%;
+}

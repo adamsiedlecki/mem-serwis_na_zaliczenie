@@ -18,8 +18,7 @@ if (!isset($_SESSION['logged_id'])) {
         //echo $user;
 		if ($user && password_verify($password, $user['password'])) {
             $_SESSION['logged_id'] = $user['id'];
-            $_SESSION['username'] = $user['login'];
-            $_SESSION['role'] = $user['role'];
+            $_SESSION['username'] =$user['login'];
 			unset($_SESSION['bad_attempt']);
 		} else {
 			$_SESSION['bad_attempt'] = true;
