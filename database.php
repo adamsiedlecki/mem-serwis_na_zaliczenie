@@ -112,4 +112,11 @@
         $stmt->close();
         return $result;
     }
+    function getNewestMeme(){
+        $connection = getDbConnection();
+        $query = "SELECT * FROM memes ORDER BY date DESC LIMIT 1 ";
+        $result = $connection->query($query);
+        $connection->close();
+        return $result;
+    }
 ?>

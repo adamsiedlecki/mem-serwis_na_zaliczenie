@@ -83,6 +83,22 @@ if (!isset($_SESSION['logged_id'])) {
                 <div class="meme">
                     <img class="memeimg" src="meme/main-meme.jpg">
                 </div>
+
+                <?php
+
+                    $result = getNewestMeme();
+
+                    while($row = $result->fetch_assoc()){
+                        //echo $row;
+                        echo "Najnowszy mem:";
+                        echo '<div class="meme">';
+                        $username = getLoginById($row['user_id']);
+                        echo '<img class="memeimg" src="meme/'.$row['filename'].'"> 
+                        <p>'.$username." ".$row['date'].'</p>';
+                        echo '</div>';
+                    }
+
+                ?>
         </div>
     </div>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 06 Maj 2020, 20:05
+-- Czas generowania: 12 Maj 2020, 20:48
 -- Wersja serwera: 10.4.6-MariaDB
 -- Wersja PHP: 7.1.32
 
@@ -32,7 +32,7 @@ CREATE TABLE `memes` (
   `id` int(11) NOT NULL,
   `filename` text COLLATE utf8_polish_ci NOT NULL,
   `user_id` int(11) NOT NULL,
-  `date` date NOT NULL
+  `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
@@ -40,12 +40,13 @@ CREATE TABLE `memes` (
 --
 
 INSERT INTO `memes` (`id`, `filename`, `user_id`, `date`) VALUES
-(14, 'integer.png', 1, '2020-05-06'),
-(15, 'array.png', 1, '2020-05-06'),
-(16, '4364d1a9f0cf5842f07ad1893ecba974.png', 1, '2020-05-06'),
-(17, 'fajny-ten-mem_2018-09-13_21-01-44.jpg', 1, '2020-05-06'),
-(18, '15855128536066.jpg', 2, '2020-05-06'),
-(19, 'meme_4W22ima2qe9RE4fI0ljlH8UBS.jpeg', 5, '2020-05-06');
+(14, 'integer.png', 1, '2020-05-06 00:30:00'),
+(15, 'array.png', 1, '2020-05-06 00:00:00'),
+(16, '4364d1a9f0cf5842f07ad1893ecba974.png', 1, '2020-05-06 00:50:00'),
+(17, 'fajny-ten-mem_2018-09-13_21-01-44.jpg', 1, '2020-05-06 00:00:00'),
+(18, '15855128536066.jpg', 2, '2020-05-06 00:20:00'),
+(19, 'meme_4W22ima2qe9RE4fI0ljlH8UBS.jpeg', 5, '2020-05-06 00:10:00'),
+(20, '444a932095_zdales_cisco.jpg', 1, '2020-05-12 20:47:38');
 
 -- --------------------------------------------------------
 
@@ -93,7 +94,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `memes`
 --
 ALTER TABLE `memes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
