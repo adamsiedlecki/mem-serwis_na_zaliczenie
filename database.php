@@ -46,6 +46,20 @@
         $connection->close();
         return $result;
     }
+    function getAllUsersAlphabeticOrder(){
+        $connection = getDbConnection();
+        $query = "SELECT * FROM users ORDER BY login ASC";
+        $result = $connection->query($query);
+        $connection->close();
+        return $result;
+    }
+    function getOnlyAdmins(){
+        $connection = getDbConnection();
+        $query = "SELECT * FROM users WHERE role='admin'";
+        $result = $connection->query($query);
+        $connection->close();
+        return $result;
+    }
     function getUserCount(){
         $connection = getDbConnection();
         $query = "SELECT COUNT(id) FROM users WHERE 1=1 ";
@@ -97,7 +111,7 @@
     //TABLE MEMES
     function getAllMemes(){
         $connection = getDbConnection();
-        $query = "SELECT * FROM memes ";
+        $query = "SELECT * FROM memes ORDER BY DATE DESC";
         $result = $connection->query($query);
         $connection->close();
         return $result;

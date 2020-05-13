@@ -77,17 +77,18 @@ if(isset($_POST['userIdToDelete'])){
             </div>
         </div>
         <div id="content">
-                <div class="meme">
-                    Lista użytkowników: </br>
+                
+                    Lista wszystkich użytkowników: </br>
                     <?php
                      if($_SESSION["role"]=="admin"){
                         $users = getAllUsers();
 
-                        echo "ID & NAZWA & ROLA </br>";
+                        echo "<table>";
+                        echo "<tr> <td>ID </td> <td>NAZWA </td> <td> ROLA </td>  </tr>";
                         while($row = $users->fetch_assoc()){
-                            echo $row['id']." ".$row['login']." ".$row['role']."</br>";
+                            echo "<tr> <td>".$row['id']." </td> <td> ".$row['login']." </td> <td> ".$row['role']." </td> </tr>";
                         }
-
+                        echo "</table>";
 
                         echo '</br> </br>
                         Usuń usera o podanym ID:
@@ -99,8 +100,40 @@ if(isset($_POST['userIdToDelete'])){
                          echo "ACCESS DENIED";
                      }
                     ?>
+                    </br>
+                    Lista samych adminów: </br>
+                    <?php
+                     if($_SESSION["role"]=="admin"){
+                        $users = getOnlyAdmins();
+
+                        echo "<table>";
+                        echo "<tr> <td>ID </td> <td>NAZWA </td> <td> ROLA </td>  </tr>";
+                        while($row = $users->fetch_assoc()){
+                            echo "<tr> <td>".$row['id']." </td> <td> ".$row['login']." </td> <td> ".$row['role']." </td> </tr>";
+                        }
+                        echo "</table>";
+                     }else{
+                         echo "ACCESS DENIED";
+                     }
+                    ?>
+                    </br>
+                    Lista wszystkich posortowana alfabetycznie przez nazwę: </br>
+                    <?php
+                     if($_SESSION["role"]=="admin"){
+                        $users = getAllUsersAlphabeticOrder();
+
+                        echo "<table>";
+                        echo "<tr> <td>ID </td> <td>NAZWA </td> <td> ROLA </td>  </tr>";
+                        while($row = $users->fetch_assoc()){
+                            echo "<tr> <td>".$row['id']." </td> <td> ".$row['login']." </td> <td> ".$row['role']." </td> </tr>";
+                        }
+                        echo "</table>";
+                     }else{
+                         echo "ACCESS DENIED";
+                     }
+                    ?>
                     
-                </div>
+                
         </div>
     </div>
 
