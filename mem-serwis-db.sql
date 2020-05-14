@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 13 Maj 2020, 09:51
+-- Czas generowania: 14 Maj 2020, 19:46
 -- Wersja serwera: 10.4.6-MariaDB
 -- Wersja PHP: 7.1.32
 
@@ -42,7 +42,6 @@ CREATE TABLE `memes` (
 INSERT INTO `memes` (`id`, `filename`, `user_id`, `date`) VALUES
 (14, 'integer.png', 1, '2020-05-06 00:30:00'),
 (15, 'array.png', 1, '2020-05-06 00:00:00'),
-(16, '4364d1a9f0cf5842f07ad1893ecba974.png', 1, '2020-05-06 00:50:00'),
 (17, 'fajny-ten-mem_2018-09-13_21-01-44.jpg', 1, '2020-05-06 00:00:00'),
 (18, '15855128536066.jpg', 2, '2020-05-06 00:20:00'),
 (19, 'meme_4W22ima2qe9RE4fI0ljlH8UBS.jpeg', 5, '2020-05-06 00:10:00'),

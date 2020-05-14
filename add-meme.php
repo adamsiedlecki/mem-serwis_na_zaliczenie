@@ -77,7 +77,28 @@ if (!isset($_SESSION['logged_id'])) {
                     <input type="submit" value="Wyślij plik"/>
 
                     </form>
+                    
                 </div>
+                <?php
+                    echo "Twoje memy: </br>";
+                    $result = getCurrentUserMemes($_SESSION['logged_id']);
+
+                    while($row = $result->fetch_assoc()){
+
+                        echo '<div class="meme">';
+                        $username = getLoginById($row['user_id']);
+                        echo '<img class="memeimg" src="meme/'.$row['filename'].'"> 
+                        <p>'.$username." ".$row['date'].'</p>';
+
+                        echo '<form action="delete.php" method="POST" ">
+                        <input  type="hidden" value="'.$row['id'].'" name="memeid"/><br/>
+                        <input type="submit" value="Usuń powyższego mema z systemu"/>
+    
+                        </form>';
+                        echo '</div>';
+                        echo "</br></br></br> </br>";
+                    }
+                    ?>
         </div>
     </div>
 

@@ -126,11 +126,39 @@
         $stmt->close();
         return $result;
     }
+    function getCurrentUserMemes($userid){
+        $date = getdate();
+        $connection = getDbConnection();
+        $stmt = $connection->prepare("SELECT * FROM memes WHERE user_id=?");
+        $stmt->bind_param("i", $userid);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result;
+    }
     function getNewestMeme(){
         $connection = getDbConnection();
         $query = "SELECT * FROM memes ORDER BY date DESC LIMIT 1 ";
         $result = $connection->query($query);
         $connection->close();
+        return $result;
+    }
+    function getMemeById($id){
+        $connection = getDbConnection();
+        $stmt = $connection->prepare("SELECT * FROM memes WHERE id=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result;
+    }
+    function deleteMemeById($id){
+        $connection = getDbConnection();
+        $stmt = $connection->prepare("DELETE FROM memes WHERE id=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
         return $result;
     }
 ?>
