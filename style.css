@@ -14,8 +14,8 @@
 }
 
 img.logo{
-    width:10%;
-    height: 10%;
+    width:5%;
+    height: 5%;
 }
 #profile-list{
     text-align: left;
@@ -103,4 +103,17 @@ table{
 td{
   border: 2px solid black;
   padding: 10px;
+}
+input, select {
+  width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+h4{
+  font-family: 'Amatic SC', cursive;
+  font-size: 30px;
 }

@@ -33,6 +33,7 @@ if(isset($_POST['password1'])){
 <head>
     <title>Mem-serwis</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" href="img/favicon.png">
     <meta charset="UTF-8">
